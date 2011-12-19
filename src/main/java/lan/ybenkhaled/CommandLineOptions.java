@@ -2,14 +2,15 @@ package lan.ybenkhaled;
 
 import java.util.List;
 
+import org.kohsuke.args4j.Argument;
 import org.kohsuke.args4j.Option;
 
 public class CommandLineOptions {
 
-	@Option(name = "-n", usage = "Name of the program", metaVar = "String", aliases = "--name", required = true)
+	@Option(name = "-n", usage = "Name of the application", metaVar = "String", aliases = "--name", required = true)
 	private String name;
 
-	@Option(name = "-s", usage = "Override the default character separator", metaVar = "String", aliases = "--separator")
+	@Option(name = "-s", usage = "Override the default separator", metaVar = "String", aliases = "--separator")
 	private String separator = "\n";
 
 	@Option(name = "-d", usage = "Display or not the configuration", aliases = "--display")
@@ -20,6 +21,15 @@ public class CommandLineOptions {
 
 	@Option(name = "-c", usage = "Definition of a complex type", aliases = "--complex", handler = ComplexHandler.class)
 	private Complex complex;
+
+	@Argument(index = 0)
+	private String argument1;
+
+	@Argument(index = 1)
+	private String argument2;
+
+	@Argument(index = 2)
+	private List<String> arguments;
 
 	public String getName() {
 		return name;
@@ -61,9 +71,34 @@ public class CommandLineOptions {
 		this.complex = complex;
 	}
 
+	public String getArgument1() {
+		return argument1;
+	}
+
+	public void setArgument1(String argument1) {
+		this.argument1 = argument1;
+	}
+
+	public String getArgument2() {
+		return argument2;
+	}
+
+	public void setArgument2(String argument2) {
+		this.argument2 = argument2;
+	}
+
+	public List<String> getArguments() {
+		return arguments;
+	}
+
+	public void setArguments(List<String> arguments) {
+		this.arguments = arguments;
+	}
+
 	@Override
 	public String toString() {
-		return "CommandLineOptions [name=" + name + " " + separator + " integers=" + integers + " " + separator + " complex=" + complex + "]";
+		return "CommandLineOptions [name=" + name + " " + separator + " integers=" + integers + " " + separator + " complex=" + complex + " " + separator + " argument1="
+				+ argument1 + " " + separator + " argument2=" + argument2 + " " + separator + " arguments=" + arguments + "]";
 	}
 
 }
